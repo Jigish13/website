@@ -1,0 +1,245 @@
+/* SCSS variables */
+$Brown: #854442;
+$darkBrown: #4b3832;
+$lightBrown: #be9b7b;
+$navbarBackground: #3c2f2f;
+$cappuccinoWhite: #fff4e6;
+
+/* Border Variables for testing */
+$borderBlack: 3px solid $darkBrown;
+$borderRed: 5px solid red;
+$borderGreen: 5px solid green;
+$borderBlue: 5px solid blue;
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: $cappuccinoWhite;
+}
+a, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kavivanar', cursive;
+    font-weight: normal;
+}
+p::selection {
+	color: $cappuccinoWhite;
+	background-color: $darkBrown;
+}
+
+/* SCSS inheritance */
+%topmargin {
+	margin-top: 10%;
+}
+.navbar{
+	background: $navbarBackground;
+}
+.nav-link, .navbar-brand{
+	color: $cappuccinoWhite;
+	cursor: pointer;
+}
+.nav-link{
+	margin-right: 1em !important;
+}
+.nav-link:hover{
+	background: $cappuccinoWhite;
+	color: $darkBrown;
+}
+.navbar-collapse{
+ justify-content: flex-end;
+}
+
+/*  
+	Following code was used to solve the problem of navbar toggler icon.
+	Ref: https://stackoverflow.com/questions/46100302/bootstrap-4-navbar-toggler-not-showing
+*/
+.navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* SCSS Nesting */
+nav {
+	a:hover {
+		color: $cappuccinoWhite;
+	}
+	.navbar-nav a::before{
+		content: "< ";
+	}
+	.navbar-nav a::after{
+		content: " />";
+	}
+}
+
+.about {
+	@extend %topmargin;
+	padding: 1em;
+	position: relative;
+	img{
+		border: $borderBlack;
+	}
+	h2{
+		color: brown;
+		//border: $borderRed;
+	}
+	p{
+		color: $darkBrown;
+		line-height: 2;	
+	}
+	.description{
+		//border: $borderGreen;
+		text-align: center;
+		margin: 0;
+		line-height: 2;
+		font-size: 1.1rem;
+	}
+	#my_name{
+		// /border: $borderBlue;
+		font-size: 1.4rem;
+		text-align: center;
+		font-weight: bold;
+		color: #DA0090;
+	}
+	.about_me p::before{
+		content: '# ';
+	}
+}
+
+#contact {
+	@extend %topmargin;
+	h1{
+		padding: 2em 1px;
+		color: $darkBrown;
+	}
+	.right{
+		max-width: 600px;
+	}
+	input[type=submit]{
+		background-color: $darkBrown;
+		color: $cappuccinoWhite;
+		border: 0;
+	}
+}
+
+.contact-form {
+	.right .form-control::placeholder{
+		color: $navbarBackground;
+		font-size: 1rem;
+	}
+	.form-group .form-control{
+		border: 1px solid $lightBrown;
+	}
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+	#contact h1{
+		text-align: center;
+		padding: 0;
+		padding-bottom: 1rem;
+	}
+	.contact-form{		
+		padding: 1em;
+		position: relative;
+	}
+
+	/*
+		Solved the prob of navbar collapsed menu not pushing content down when expanded. 
+		Ref: https://stackoverflow.com/questions/22564817/bootstrap-collapsed-menu-not-pushing-content-down-when-expanded
+	*/
+	.fixed-top{
+		position: relative;
+	}
+}
+
+/*--------------------------- background.html ----------------------------------- */
+#preamble{
+	//border: $borderGreen;
+	//@extend %topmargin;
+	margin-top: 8%;
+	text-align: center;
+	color: $darkBrown;
+	font-size: 1.1rem;
+    font-family: 'Kavivanar', cursive;
+    font-weight: normal;
+}
+
+#preamble a{
+	color: $navbarBackground;	
+	text-decoration: underline;
+}
+
+#preamble a:hover{
+	color: $navbarBackground;
+	text-decoration: none;
+	font-size: 1.3rem;
+}
+
+ul.timeline {
+	list-style-type: none;
+	position: relative;
+}
+
+ul.timeline:before {
+	content: ' ';
+	background: $lightBrown;
+	display: inline-block;
+	position: absolute;
+	left: 29px;
+	width: 2px;
+	height: 100%;
+	z-index: 400;
+}
+
+ul.timeline > li {
+	margin: 20px 0;
+	padding-left: 20px;
+}
+
+ul.timeline > li:before {
+	content: ' ';
+	background: $lightBrown;
+	display: inline-block;
+	position: absolute;
+	border-radius: 50%;
+	border: 3px solid $navbarBackground;
+	left: 20px;
+	width: 20px;
+	height: 20px;
+	z-index: 400;
+}
+
+.timeline {
+	h5{
+		display: inline;
+	}
+	.bottom_para{
+		color: $navbarBackground;
+		//border: $borderRed;
+		text-align: justify; 
+		margin-top: 3%;
+	}
+	.float-lg-right {
+		font-style: italic;
+		//border: $borderGreen;
+		color: $darkBrown;
+		//position: relative;
+		//left: 50px;
+	}
+}
+
+@media (max-width: 992px) {
+	.timeline {
+		.float-lg-right {
+			margin-top: 1%;
+			margin-bottom: 0;
+			text-decoration: underline;
+			font-style: italic;
+		}
+	}
+}
+
+caption{
+	//border: $borderRed;
+	text-align: center;
+	color: brown;
+	font-size: 1.2rem;
+    font-family: 'Kavivanar', cursive;
+    font-weight: normal;	
+}
